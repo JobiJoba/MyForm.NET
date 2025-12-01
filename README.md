@@ -2,7 +2,7 @@
 
 ## Motivation
 
-The goal of this project is for me to return in the .NET world by doing a small project fron A to Z. 
+The goal of this project is for me to return in the .NET world by doing a small project from A to Z. 
 
 - I'm using [Rider IDE](https://www.jetbrains.com/rider/) (from jetbrains).
 - I'm on a Mac (M1)
@@ -29,4 +29,9 @@ I want to practice and learn
 
 
 ### Phase 3
+
+- Add a simple form and send data to an API
+- Show the data from that form on another page
+
+### Phase 4
 ... to come
