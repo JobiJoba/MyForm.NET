@@ -2,7 +2,7 @@
 
 ## Motivation
 
-The objectif of this project is for me to return in the .NET world by doing a small project fron A to Z. 
+The goal of this project is for me to return in the .NET world by doing a small project fron A to Z. 
 
 - I'm using [Rider IDE](https://www.jetbrains.com/rider/) (from jetbrains).
 - I'm on a Mac (M1)
