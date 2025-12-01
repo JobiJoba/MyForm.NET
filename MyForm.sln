@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyForm.FormApi", "MyForm.FormApi\MyForm.FormApi.csproj", "{ECACCFCE-8152-46E3-AC13-1EF9B8261683}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyForm.AppHost", "MyForm.AppHost\MyForm.AppHost.csproj", "{D8E24E83-1608-4EB6-9238-FC578BA10C2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyForm.ServiceDefaults", "MyForm.ServiceDefaults\MyForm.ServiceDefaults.csproj", "{F2F865BA-CF29-4ED2-AE89-AC1EFD18706A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECACCFCE-8152-46E3-AC13-1EF9B8261683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECACCFCE-8152-46E3-AC13-1EF9B8261683}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECACCFCE-8152-46E3-AC13-1EF9B8261683}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECACCFCE-8152-46E3-AC13-1EF9B8261683}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8E24E83-1608-4EB6-9238-FC578BA10C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8E24E83-1608-4EB6-9238-FC578BA10C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8E24E83-1608-4EB6-9238-FC578BA10C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8E24E83-1608-4EB6-9238-FC578BA10C2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2F865BA-CF29-4ED2-AE89-AC1EFD18706A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2F865BA-CF29-4ED2-AE89-AC1EFD18706A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2F865BA-CF29-4ED2-AE89-AC1EFD18706A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2F865BA-CF29-4ED2-AE89-AC1EFD18706A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
