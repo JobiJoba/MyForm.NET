@@ -1,19 +1,36 @@
+using Microsoft.EntityFrameworkCore;
+using MyForm.FormApi.Data;
+using MyForm.FormApi.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
+builder.AddNpgsqlDbContext<MyFormDbContext>("myform");
+
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// builder.Services.AddOpenApi();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
 
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    // app.MapOpenApi();
+    using var scope = app.Services.CreateScope();
+    var dbContext = scope.ServiceProvider.GetRequiredService<MyFormDbContext>();
+    dbContext.Database.Migrate();
+    
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
@@ -36,6 +53,11 @@ app.MapGet("/weatherforecast", () =>
         return forecast;
     })
     .WithName("GetWeatherForecast");
+
+
+app.MapGet("/forms", async (MyFormDbContext db) => await db.Forms.ToListAsync())
+    .WithName("GetAllSubmissions")
+    .Produces<List<SimpleForm>>();
 
 app.Run();
 

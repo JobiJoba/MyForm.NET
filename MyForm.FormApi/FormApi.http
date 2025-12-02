@@ -4,3 +4,7 @@ GET {{FormApi_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+
+GET {{FormApi_HostAddress}}/forms
+Accept: application/json

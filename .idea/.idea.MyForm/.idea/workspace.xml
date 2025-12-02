@@ -14,7 +14,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="" />
+    <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/MyForm.FormApi/Data/MyFormDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyForm.FormApi/Entities/SimpleForm.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/devlog/day02.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AppHost/AppHost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AppHost/AppHost.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AppHost/MyForm.AppHost.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AppHost/MyForm.AppHost.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/FormApi.http" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/FormApi.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/MyForm.FormApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/MyForm.FormApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +52,17 @@
 }]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/get-requests.http" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8c521c6a7880cfe0802fe7a27ea19771b59ed1d89b695f9674944bd2eca7d52/IResourceBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ae62ba349516ed6ffc77677754e3f3813337894f9d942dfa80ae3055c49/WebApplication.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/2025-12-01T094059.200.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/2025-12-01T132210.200.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/2025-12-01T132225.200.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.vscode/settings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.AngularApp/package-lock.json" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AppHost/AppHost.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Data/MyFormDbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Entities/SimpleForm.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/global.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="HttpClientSelectedEnvironments">
@@ -68,6 +90,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Aspire Host.MyForm.AppHost: http.executor": "Run",
     "HTTP Request.FormApi | #1.executor": "Run",
+    "HTTP Request.FormApi | #2.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -94,6 +117,7 @@
           <value>
             <map>
               <entry key="FormApi | #1" value="STOPPED" />
+              <entry key="FormApi | #2" value="STOPPED" />
             </map>
           </value>
         </entry>
@@ -154,6 +178,9 @@
       </method>
     </configuration>
     <configuration name="FormApi | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/FormApi/FormApi.http" executionIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="FormApi | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/MyForm.FormApi/FormApi.http" executionIdentifier="#2" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="FormApi: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile" activateToolWindowBeforeRun="false">
@@ -254,6 +281,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.FormApi | #2" />
         <item itemvalue="HTTP Request.FormApi | #1" />
       </list>
     </recent_temporary>
@@ -269,7 +297,7 @@
       <workItem from="1764557080997" duration="17000" />
       <workItem from="1764557112094" duration="192000" />
       <workItem from="1764557318276" duration="120000" />
-      <workItem from="1764557485282" duration="9455000" />
+      <workItem from="1764557485282" duration="15855000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -287,7 +315,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764595207180</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added Angular project in github">
+      <option name="closed" value="true" />
+      <created>1764595707903</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764595707903</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add more info about the next phases in README.md">
+      <option name="closed" value="true" />
+      <created>1764595860302</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764595860302</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,7 +343,9 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="initial commit" />
     <MESSAGE value="Readme correction and describe day01 work on the project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Readme correction and describe day01 work on the project" />
+    <MESSAGE value="Added Angular project in github" />
+    <MESSAGE value="Add more info about the next phases in README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add more info about the next phases in README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,3 +1,19 @@
+GET http://localhost:5201/forms
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2025.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-12-02T200439.200.json
+
+###
+
+GET http://localhost:5201/forms
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/JetBrains Rider 2025.2.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+###
+
 GET http://localhost:5201/weatherforecast/
 Accept: application/json
 User-Agent: IntelliJ HTTP Client/JetBrains Rider 2025.2.5
