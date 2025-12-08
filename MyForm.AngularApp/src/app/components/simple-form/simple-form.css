@@ -56,7 +56,7 @@ mat-card-content {
 
 .error-message {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -71,12 +71,32 @@ mat-card-content {
   font-size: 24px;
   width: 24px;
   height: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
-.error-message span {
+.error-content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.error-title {
   font-size: 0.875rem;
   font-weight: 500;
+}
+
+.validation-errors {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--mat-sys-on-error-container);
+  opacity: 0.9;
+}
+
+.validation-errors li {
+  margin-bottom: 0.25rem;
 }
 
 .error-enter {
@@ -103,28 +123,51 @@ mat-card-content {
   text-align: center;
 }
 
-.loading-icon {
-  font-size: 48px;
-  width: 48px;
-  height: 48px;
-  color: var(--mat-sys-primary);
-  animation: spin 1s linear infinite;
+.loading-spinner {
   margin-bottom: 1rem;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .loading-text {
   font-size: 1rem;
   color: var(--mat-sys-on-surface-variant);
   margin: 0;
+}
+
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: var(--mat-sys-error);
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+.error-state-text {
+  font-size: 1rem;
+  color: var(--mat-sys-on-surface);
+  margin-bottom: 1.5rem;
+  max-width: 400px;
+}
+
+.retry-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.retry-button mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .form {
@@ -158,6 +201,7 @@ mat-error mat-icon {
 .button-container {
   display: flex;
   justify-content: flex-end;
+  gap: 0.75rem;
   margin-top: 0.5rem;
 }
 
@@ -171,9 +215,39 @@ mat-error mat-icon {
   gap: 0.5rem;
   min-width: 140px;
   justify-content: center;
+  position: relative;
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .submit-button mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.button-spinner {
+  display: inline-block;
+}
+
+.button-spinner ::ng-deep circle {
+  stroke: currentColor;
+}
+
+.error-test-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error-test-button mat-icon {
   font-size: 20px;
   width: 20px;
   height: 20px;

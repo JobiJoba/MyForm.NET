@@ -10,8 +10,19 @@
     <mat-card-content>
       @if (errorMessage()) {
         <div class="error-message" animate.enter="error-enter">
-          <mat-icon>error</mat-icon>
-          <span>{{ errorMessage() }}</span>
+          <mat-icon>error_outline</mat-icon>
+          <div class="error-content">
+            <span class="error-title">{{ errorMessage() }}</span>
+            @if (hasValidationErrors()) {
+              <ul class="validation-errors">
+                @for (fieldErrors of getValidationErrorEntries(); track fieldErrors.key) {
+                  @for (error of fieldErrors.errors; track error) {
+                    <li>{{ fieldErrors.key }}: {{ error }}</li>
+                  }
+                }
+              </ul>
+            }
+          </div>
         </div>
       }
       
@@ -20,10 +31,10 @@
           <mat-label>First Name</mat-label>
           <input matInput formControlName="firstName" placeholder="Enter your first name" [disabled]="loading()" />
           <mat-icon matPrefix>person</mat-icon>
-          @if (form.get('firstName')?.hasError('required') && (form.get('firstName')?.dirty || submitted())) {
+          @if (getFieldError('firstName')) {
             <mat-error>
-              <mat-icon>error</mat-icon>
-              First name is required
+              <mat-icon>error_outline</mat-icon>
+              {{ getFieldError('firstName') }}
             </mat-error>
           }
         </mat-form-field>
@@ -32,10 +43,10 @@
           <mat-label>Last Name</mat-label>
           <input matInput formControlName="lastName" placeholder="Enter your last name" [disabled]="loading()" />
           <mat-icon matPrefix>person_outline</mat-icon>
-          @if (form.get('lastName')?.hasError('required') && (form.get('lastName')?.dirty || submitted())) {
+          @if (getFieldError('lastName')) {
             <mat-error>
-              <mat-icon>error</mat-icon>
-              Last name is required
+              <mat-icon>error_outline</mat-icon>
+              {{ getFieldError('lastName') }}
             </mat-error>
           }
         </mat-form-field>
@@ -43,13 +54,19 @@
         <div class="button-container">
           <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || loading()" class="submit-button">
             @if (loading()) {
-              <mat-icon>hourglass_empty</mat-icon>
-              Submitting...
+              <mat-progress-spinner mode="indeterminate" diameter="20" class="button-spinner"></mat-progress-spinner>
+              <span>Submitting...</span>
             } @else {
               <mat-icon>send</mat-icon>
-              Submit
+              <span>Submit</span>
             }
           </button>
+          @if (isDev) {
+            <button mat-stroked-button color="warn" type="button" (click)="triggerRandomError()" class="error-test-button" title="Test Error Handling (Dev Only)">
+              <mat-icon>bug_report</mat-icon>
+              <span>Test Error</span>
+            </button>
+          }
         </div>
       </form>
     </mat-card-content>
@@ -64,10 +81,19 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      @if (loading()) {
+      @if (loadingForms()) {
         <div class="loading-state">
-          <mat-icon class="loading-icon">hourglass_empty</mat-icon>
+          <mat-progress-spinner mode="indeterminate" diameter="48" class="loading-spinner"></mat-progress-spinner>
           <p class="loading-text">Loading forms...</p>
+        </div>
+      } @else if (errorMessage() && forms().length === 0) {
+        <div class="error-state">
+          <mat-icon class="error-icon">error_outline</mat-icon>
+          <p class="error-state-text">{{ errorMessage() }}</p>
+          <button mat-stroked-button color="primary" (click)="loadForms()" class="retry-button">
+            <mat-icon>refresh</mat-icon>
+            <span>Retry</span>
+          </button>
         </div>
       } @else if (forms().length > 0) {
         <mat-list class="forms-list">

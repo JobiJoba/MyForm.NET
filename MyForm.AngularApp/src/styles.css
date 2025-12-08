@@ -4,3 +4,14 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Snackbar styles */
+.error-snackbar {
+  --mdc-snackbar-container-color: var(--mat-sys-error-container, #fecaca);
+  --mdc-snackbar-supporting-text-color: var(--mat-sys-on-error-container, #991b1b);
+}
+
+.success-snackbar {
+  --mdc-snackbar-container-color: var(--mat-sys-tertiary-container, #d1fae5);
+  --mdc-snackbar-supporting-text-color: var(--mat-sys-on-tertiary-container, #065f46);
+}
