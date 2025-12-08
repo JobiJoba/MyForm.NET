@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using MyForm.FormApi.Data;
 using MyForm.FormApi.Entities;
@@ -8,12 +9,15 @@ builder.AddServiceDefaults();
 
 builder.AddNpgsqlDbContext<MyFormDbContext>("myform");
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-// builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+});
 
 var app = builder.Build();
 
@@ -58,6 +62,14 @@ app.MapGet("/weatherforecast", () =>
 app.MapGet("/forms", async (MyFormDbContext db) => await db.Forms.ToListAsync())
     .WithName("GetAllSubmissions")
     .Produces<List<SimpleForm>>();
+
+app.MapPost("/forms",  (SimpleForm form, MyFormDbContext db) =>
+{
+    
+  db.Forms.Add(form);
+  db.SaveChanges();
+ 
+});
 
 app.Run();
 

@@ -1,24 +1,19 @@
-import {NgModule, Component, signal, Injectable} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {WeatherForecasts} from '../types/weatherForecast';
-import {CommonModule} from '@angular/common';
+import { Component, signal} from '@angular/core';
+import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 
-@Injectable()
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,CommonModule],
+  standalone: true,
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('MyForm.AngularApp');
-  forecasts: WeatherForecasts = [];
+  protected readonly title = 'My Angular App';
 
-  constructor(private http: HttpClient) {
-    http.get<WeatherForecasts>('api/weatherforecast').subscribe({
-      next: result => this.forecasts = result,
-      error: console.error
-    });
-  }
+  menuItems = [
+    { path: '/forms', label: 'Simple Form', icon: '📋' },
+    ];
+
+
 }

@@ -1,0 +1,77 @@
+<div class="forms-container">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>edit</mat-icon>
+        What's your name?
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" placeholder="Enter your first name" />
+          <mat-icon matPrefix>person</mat-icon>
+          @if (form.get('firstName')?.hasError('required') && (form.get('firstName')?.dirty || submitted())) {
+            <mat-error>
+              <mat-icon>error</mat-icon>
+              First name is required
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Enter your last name" />
+          <mat-icon matPrefix>person_outline</mat-icon>
+          @if (form.get('lastName')?.hasError('required') && (form.get('lastName')?.dirty || submitted())) {
+            <mat-error>
+              <mat-icon>error</mat-icon>
+              Last name is required
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" class="submit-button">
+            <mat-icon>send</mat-icon>
+            Submit
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="list-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>list</mat-icon>
+        Submitted Forms
+        <span class="count-badge">{{ forms().length }}</span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      @if (forms().length > 0) {
+        <mat-list class="forms-list">
+          @for (form of forms(); track form.id; let i = $index) {
+            <mat-list-item class="form-item">
+              <mat-icon matListItemIcon class="item-icon">description</mat-icon>
+              <div matListItemTitle class="item-title">{{ form.firstName }} {{ form.lastName }}</div>
+              <div matListItemLine class="item-subtitle">ID: {{ form.id }}</div>
+            </mat-list-item>
+            @if (i < forms().length - 1) {
+              <mat-divider></mat-divider>
+            }
+          }
+        </mat-list>
+      } @else {
+        <div class="empty-state">
+          <mat-icon class="empty-icon">inbox</mat-icon>
+          <p class="empty-text">No forms submitted yet</p>
+          <p class="empty-subtext">Submit a form above to see it here</p>
+        </div>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>

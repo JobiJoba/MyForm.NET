@@ -15,15 +15,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MyForm.FormApi/Data/MyFormDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyForm.FormApi/Entities/SimpleForm.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/devlog/day02.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/types/simpleForm.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/devlog/day03.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/types/weatherForecast.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.AppHost/AppHost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AppHost/AppHost.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.AppHost/MyForm.AppHost.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AppHost/MyForm.AppHost.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/FormApi.http" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/FormApi.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AppHost/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AppHost/Properties/launchSettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.FormApi/MyForm.FormApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/MyForm.FormApi.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" afterDir="false" />
     </list>
@@ -35,21 +44,28 @@
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "JobiJoba"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;JobiJoba&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/JobiJoba/MyForm.NET.git",
-    "accountId": "58e0e075-5a1b-48d5-a75b-95952488f640"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JobiJoba/MyForm.NET.git&quot;,
+    &quot;accountId&quot;: &quot;58e0e075-5a1b-48d5-a75b-95952488f640&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$APPLICATION_HOME_DIR$/plugins/restClient/lib/restClient.jar!/com/intellij/ws/rest/client/requests/collection/get-requests.http" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8c521c6a7880cfe0802fe7a27ea19771b59ed1d89b695f9674944bd2eca7d52/IResourceBuilder.cs" root0="FORCE_HIGHLIGHTING" />
@@ -84,32 +100,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.FormApi: http.executor": "Run",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Aspire Host.MyForm.AppHost: http.executor": "Run",
-    "HTTP Request.FormApi | #1.executor": "Run",
-    "HTTP Request.FormApi | #2.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "/Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.FormApi: http.executor&quot;: &quot;Run&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Aspire Host.MyForm.AppHost: http.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.FormApi | #1 (1).executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.FormApi | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.FormApi | #2.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationStatuses">
       <map>
@@ -117,6 +134,7 @@
           <value>
             <map>
               <entry key="FormApi | #1" value="STOPPED" />
+              <entry key="FormApi | #1 (1)" value="STOPPED" />
               <entry key="FormApi | #2" value="STOPPED" />
             </map>
           </value>
@@ -176,6 +194,9 @@
       <method v="2">
         <option name="Build" />
       </method>
+    </configuration>
+    <configuration name="FormApi | #1 (1)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/MyForm.FormApi/FormApi.http" executionIdentifier="#1" runType="Run single request">
+      <method v="2" />
     </configuration>
     <configuration name="FormApi | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/FormApi/FormApi.http" executionIdentifier="#1" runType="Run single request">
       <method v="2" />
@@ -282,6 +303,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="HTTP Request.FormApi | #2" />
+        <item itemvalue="HTTP Request.FormApi | #1 (1)" />
         <item itemvalue="HTTP Request.FormApi | #1" />
       </list>
     </recent_temporary>
@@ -297,7 +319,8 @@
       <workItem from="1764557080997" duration="17000" />
       <workItem from="1764557112094" duration="192000" />
       <workItem from="1764557318276" duration="120000" />
-      <workItem from="1764557485282" duration="15855000" />
+      <workItem from="1764557485282" duration="25489000" />
+      <workItem from="1765161725467" duration="3902000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -331,7 +354,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764595860302</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="day02 - added db; migrations; configure swagger">
+      <option name="closed" value="true" />
+      <created>1764681307528</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1764681307528</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +376,8 @@
     <MESSAGE value="Readme correction and describe day01 work on the project" />
     <MESSAGE value="Added Angular project in github" />
     <MESSAGE value="Add more info about the next phases in README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add more info about the next phases in README.md" />
+    <MESSAGE value="day02 - added db; migrations; configure swagger" />
+    <option name="LAST_COMMIT_MESSAGE" value="day02 - added db; migrations; configure swagger" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
