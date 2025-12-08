@@ -8,10 +8,17 @@
     </mat-card-header>
 
     <mat-card-content>
+      @if (errorMessage()) {
+        <div class="error-message" animate.enter="error-enter">
+          <mat-icon>error</mat-icon>
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+      
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>First Name</mat-label>
-          <input matInput formControlName="firstName" placeholder="Enter your first name" />
+          <input matInput formControlName="firstName" placeholder="Enter your first name" [disabled]="loading()" />
           <mat-icon matPrefix>person</mat-icon>
           @if (form.get('firstName')?.hasError('required') && (form.get('firstName')?.dirty || submitted())) {
             <mat-error>
@@ -23,7 +30,7 @@
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Last Name</mat-label>
-          <input matInput formControlName="lastName" placeholder="Enter your last name" />
+          <input matInput formControlName="lastName" placeholder="Enter your last name" [disabled]="loading()" />
           <mat-icon matPrefix>person_outline</mat-icon>
           @if (form.get('lastName')?.hasError('required') && (form.get('lastName')?.dirty || submitted())) {
             <mat-error>
@@ -34,9 +41,14 @@
         </mat-form-field>
 
         <div class="button-container">
-          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" class="submit-button">
-            <mat-icon>send</mat-icon>
-            Submit
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || loading()" class="submit-button">
+            @if (loading()) {
+              <mat-icon>hourglass_empty</mat-icon>
+              Submitting...
+            } @else {
+              <mat-icon>send</mat-icon>
+              Submit
+            }
           </button>
         </div>
       </form>
@@ -52,10 +64,15 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      @if (forms().length > 0) {
+      @if (loading()) {
+        <div class="loading-state">
+          <mat-icon class="loading-icon">hourglass_empty</mat-icon>
+          <p class="loading-text">Loading forms...</p>
+        </div>
+      } @else if (forms().length > 0) {
         <mat-list class="forms-list">
           @for (form of forms(); track form.id; let i = $index) {
-            <mat-list-item class="form-item">
+            <mat-list-item class="form-item" animate.enter="form-item-enter">
               <mat-icon matListItemIcon class="item-icon">description</mat-icon>
               <div matListItemTitle class="item-title">{{ form.firstName }} {{ form.lastName }}</div>
               <div matListItemLine class="item-subtitle">ID: {{ form.id }}</div>

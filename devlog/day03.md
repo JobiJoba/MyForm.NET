@@ -7,3 +7,4 @@
 - Change launchsettings to not open a browser every time I launch my container
 - Improve the simpleForms by adding a way to submit forms entry (firstname-lastname)
 - Refactor the typescript types to be PascalCase
+- Added alias for types in Typescript

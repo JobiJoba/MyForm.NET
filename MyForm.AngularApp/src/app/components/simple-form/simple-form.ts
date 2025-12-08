@@ -1,5 +1,4 @@
-import {Component, inject, signal} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -8,7 +7,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
-import {SimpleForms, CreateFormRequest, CreateFormResponse, ApiError} from '@/types/simpleForm';
+import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
+import {SimpleForms, CreateFormRequest, ApiError} from '@/types/simpleForm';
+import {FormService} from '@/app/services/form.service';
 
 @Component({
   selector: 'app-simple-form',
@@ -20,17 +21,22 @@ import {SimpleForms, CreateFormRequest, CreateFormResponse, ApiError} from '@/ty
     MatButtonModule,
     MatListModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   standalone: true,
   templateUrl: './simple-form.html',
   styleUrl: './simple-form.css',
 })
-export class SimpleFormComponent {
-  private http = inject(HttpClient);
+export class SimpleFormComponent implements OnInit {
+  private formService = inject(FormService);
   private fb = inject(FormBuilder);
+  private snackBar = inject(MatSnackBar);
+  
   forms = signal<SimpleForms>([]);
   submitted = signal<boolean>(false);
+  errorMessage = signal<string | null>(null);
+  loading = signal<boolean>(false);
   
   form: FormGroup = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(1)]],
@@ -42,27 +48,55 @@ export class SimpleFormComponent {
   }
 
   loadForms(): void {
-    this.http.get<SimpleForms>('api/forms').subscribe({
-      next: (result: SimpleForms) => this.forms.set(result),
+    this.loading.set(true);
+    this.errorMessage.set(null);
+    
+    this.formService.getAllForms().subscribe({
+      next: (result: SimpleForms) => {
+        this.forms.set(result);
+        this.loading.set(false);
+      },
       error: (error: ApiError) => {
-        console.error('Failed to load forms:', error);
+        this.errorMessage.set(error.message);
+        this.loading.set(false);
+        this.snackBar.open(error.message, 'Close', {
+          duration: 5000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
       }
     });
   }
 
   onSubmit(): void {
     this.submitted.set(true);
+    this.errorMessage.set(null);
+    
     if (this.form.valid) {
       const formValue: CreateFormRequest = this.form.value as CreateFormRequest;
-      this.http.post<CreateFormResponse>('api/forms', formValue).subscribe({
-        next: (response: CreateFormResponse) => {
+      this.loading.set(true);
+      
+      this.formService.createForm(formValue).subscribe({
+        next: () => {
           this.form.reset();
           this.submitted.set(false);
+          this.loading.set(false);
+          this.snackBar.open('Form submitted successfully!', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
           this.loadForms();
         },
         error: (error: ApiError) => {
-          console.error('Failed to submit form:', error);
+          this.errorMessage.set(error.message);
           this.submitted.set(false);
+          this.loading.set(false);
+          this.snackBar.open(error.message, 'Close', {
+            duration: 5000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
         }
       });
     }

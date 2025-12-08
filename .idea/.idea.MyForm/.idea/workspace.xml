@@ -15,26 +15,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/types/simpleForm.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/devlog/day03.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/angular.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/types/weatherForecast.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AppHost/AppHost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AppHost/AppHost.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AppHost/MyForm.AppHost.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AppHost/MyForm.AppHost.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AppHost/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AppHost/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/MyForm.FormApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/MyForm.FormApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/devlog/day03.md" beforeDir="false" afterPath="$PROJECT_DIR$/devlog/day03.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,11 +61,14 @@
     <setting file="file://$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/2025-12-01T132210.200.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/2025-12-01T132225.200.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.vscode/settings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/angular.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/angular.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.AngularApp/package-lock.json" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/package.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/tsconfig.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AppHost/AppHost.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Data/MyFormDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Entities/SimpleForm.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/global.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="HttpClientSelectedEnvironments">
@@ -89,6 +79,9 @@
   &quot;isMigrated&quot;: true
 }</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/MyForm.AngularApp/package.json" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -320,7 +313,7 @@
       <workItem from="1764557112094" duration="192000" />
       <workItem from="1764557318276" duration="120000" />
       <workItem from="1764557485282" duration="25489000" />
-      <workItem from="1765161725467" duration="3902000" />
+      <workItem from="1765161725467" duration="4969000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -362,7 +355,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764681307528</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="day 03">
+      <option name="closed" value="true" />
+      <created>1765165983231</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1765165983231</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,7 +378,8 @@
     <MESSAGE value="Added Angular project in github" />
     <MESSAGE value="Add more info about the next phases in README.md" />
     <MESSAGE value="day02 - added db; migrations; configure swagger" />
-    <option name="LAST_COMMIT_MESSAGE" value="day02 - added db; migrations; configure swagger" />
+    <MESSAGE value="day 03" />
+    <option name="LAST_COMMIT_MESSAGE" value="day 03" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
