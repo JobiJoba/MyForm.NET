@@ -17,7 +17,6 @@
     <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/services/form.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/services/form.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,11 +57,7 @@
     <setting file="file://$PROJECT_DIR$/.idea/.idea.MyForm/.idea/httpRequests/2025-12-01T132225.200.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.vscode/settings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/angular.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/angular.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.AngularApp/package-lock.json" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/package.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/tsconfig.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AppHost/AppHost.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Data/MyFormDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Entities/SimpleForm.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/global.json" root0="FORCE_HIGHLIGHTING" />
@@ -310,7 +305,7 @@
       <workItem from="1764557318276" duration="120000" />
       <workItem from="1764557485282" duration="25489000" />
       <workItem from="1765161725467" duration="7614000" />
-      <workItem from="1765286717919" duration="543000" />
+      <workItem from="1765286717919" duration="1571000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -376,7 +371,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765167661986</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added Retry logic and clean subscription with TakeUntilDestroy">
+      <option name="closed" value="true" />
+      <created>1765287356133</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1765287356133</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added environment aware configuration">
+      <option name="closed" value="true" />
+      <created>1765287605083</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1765287605083</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +405,9 @@
     <MESSAGE value="day 03" />
     <MESSAGE value="day 03 - added services" />
     <MESSAGE value="Manage error a bit better; added a simulator of error when we are in devMode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Manage error a bit better; added a simulator of error when we are in devMode" />
+    <MESSAGE value="Added Retry logic and clean subscription with TakeUntilDestroy" />
+    <MESSAGE value="Added environment aware configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added environment aware configuration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

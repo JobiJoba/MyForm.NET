@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal, isDevMode, DestroyRef} from '@angular/core';
+import {Component, inject, OnInit, isDevMode, DestroyRef} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {finalize} from 'rxjs';
@@ -11,8 +11,9 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {SimpleForms, CreateFormRequest, ApiError} from '@/types/simpleForm';
+import {CreateFormRequest, ApiError} from '@/types/simpleForm';
 import {FormService} from '@/app/services/form.service';
+import {FormState} from './form-state';
 
 @Component({
   selector: 'app-simple-form',
@@ -38,12 +39,19 @@ export class SimpleFormComponent implements OnInit {
   private snackBar = inject(MatSnackBar);
   private destroyRef = inject(DestroyRef);
   
-  forms = signal<SimpleForms>([]);
-  submitted = signal<boolean>(false);
-  errorMessage = signal<string | null>(null);
-  validationErrors = signal<Record<string, string[]> | null>(null);
-  loading = signal<boolean>(false);
-  loadingForms = signal<boolean>(false);
+  // Encapsulated state management
+  readonly state = new FormState();
+  
+  // Expose state signals for template
+  readonly forms = this.state.forms;
+  readonly submitted = this.state.submitted;
+  readonly errorMessage = this.state.errorMessage;
+  readonly validationErrors = this.state.validationErrors;
+  readonly loading = this.state.submitting;
+  readonly loadingForms = this.state.loadingForms;
+  readonly isLoading = this.state.isLoading;
+  readonly hasError = this.state.hasError;
+  readonly hasValidationErrors = this.state.hasValidationErrors;
   
   get isDev(): boolean {
     return isDevMode();
@@ -59,56 +67,45 @@ export class SimpleFormComponent implements OnInit {
   });
 
   loadForms(): void {
-    this.loadingForms.set(true);
-    this.errorMessage.set(null);
-    this.validationErrors.set(null);
+    this.state.setLoadingForms(true);
+    this.state.clearError();
     
     this.formService.getAllForms()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        finalize(() => this.loadingForms.set(false))
+        finalize(() => this.state.setLoadingForms(false))
       )
       .subscribe({
-        next: (result: SimpleForms) => {
-          this.forms.set(result);
+        next: (result) => {
+          this.state.setForms(result);
         },
         error: (error: ApiError) => {
-          this.errorMessage.set(error.message);
-          this.validationErrors.set(error.errors || null);
-          
-          // Show error notification
-          this.snackBar.open(error.message, 'Close', {
-            duration: 5000,
-            horizontalPosition: 'end',
-            verticalPosition: 'top',
-            panelClass: ['error-snackbar']
-          });
+          this.state.setError(error);
+          this.showErrorNotification(error.message);
         }
       });
   }
 
   onSubmit(): void {
-    this.submitted.set(true);
-    this.errorMessage.set(null);
-    this.validationErrors.set(null);
+    this.state.setSubmitted(true);
+    this.state.clearError();
     
     if (this.form.valid) {
       const formValue: CreateFormRequest = this.form.value as CreateFormRequest;
-      this.loading.set(true);
+      this.state.setSubmitting(true);
       
       this.formService.createForm(formValue)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
           finalize(() => {
-            this.loading.set(false);
-            this.submitted.set(false);
+            this.state.setSubmitting(false);
+            this.state.setSubmitted(false);
           })
         )
         .subscribe({
           next: () => {
             this.form.reset();
-            this.errorMessage.set(null);
-            this.validationErrors.set(null);
+            this.state.clearError();
             
             this.snackBar.open('Form submitted successfully!', 'Close', {
               duration: 3000,
@@ -121,26 +118,9 @@ export class SimpleFormComponent implements OnInit {
             this.loadForms();
           },
           error: (error: ApiError) => {
-            this.errorMessage.set(error.message);
-            this.validationErrors.set(error.errors || null);
-            
-            // Apply validation errors to form controls if available
-            if (error.errors) {
-              Object.keys(error.errors).forEach(key => {
-                const control = this.form.get(key);
-                if (control && error.errors?.[key]) {
-                  control.setErrors({ apiError: error.errors[key][0] });
-                  control.markAsTouched();
-                }
-              });
-            }
-            
-            this.snackBar.open(error.message, 'Close', {
-              duration: 5000,
-              horizontalPosition: 'end',
-              verticalPosition: 'top',
-              panelClass: ['error-snackbar']
-            });
+            this.state.setError(error);
+            this.applyValidationErrorsToForm(error);
+            this.showErrorNotification(error.message);
           }
         });
     } else {
@@ -153,7 +133,7 @@ export class SimpleFormComponent implements OnInit {
   
   getFieldError(fieldName: string): string | null {
     const control = this.form.get(fieldName);
-    if (!control || !control.errors || (!control.touched && !this.submitted())) {
+    if (!control || !control.errors || (!control.touched && !this.state.submitted())) {
       return null;
     }
     
@@ -175,19 +155,11 @@ export class SimpleFormComponent implements OnInit {
   }
   
   getValidationErrorEntries(): Array<{key: string, errors: string[]}> {
-    const errors = this.validationErrors();
+    const errors = this.state.validationErrors();
     if (!errors) {
       return [];
     }
     return Object.entries(errors).map(([key, value]) => ({ key, errors: value }));
-  }
-  
-  hasValidationErrors(): boolean {
-    const errors = this.validationErrors();
-    if (!errors) {
-      return false;
-    }
-    return Object.keys(errors).length > 0;
   }
   
   triggerRandomError(): void {
@@ -206,10 +178,6 @@ export class SimpleFormComponent implements OnInit {
   }
   
   private triggerNetworkError(): void {
-    this.errorMessage.set(null);
-    this.validationErrors.set(null);
-    
-    // Simulate network error
     const mockError: ApiError = {
       message: 'Unable to connect to the server. Please check your internet connection and try again.',
       errors: undefined,
@@ -219,10 +187,6 @@ export class SimpleFormComponent implements OnInit {
   }
   
   private triggerValidationError(): void {
-    this.errorMessage.set(null);
-    this.validationErrors.set(null);
-    
-    // Simulate validation error
     const mockError: ApiError = {
       message: 'Invalid form data. Please check your input and try again.',
       errors: {
@@ -235,9 +199,6 @@ export class SimpleFormComponent implements OnInit {
   }
   
   private triggerServerError(): void {
-    this.errorMessage.set(null);
-    this.validationErrors.set(null);
-    
     const mockError: ApiError = {
       message: 'A server error occurred. Our team has been notified. Please try again later.',
       errors: undefined,
@@ -247,9 +208,6 @@ export class SimpleFormComponent implements OnInit {
   }
   
   private triggerNotFoundError(): void {
-    this.errorMessage.set(null);
-    this.validationErrors.set(null);
-    
     const mockError: ApiError = {
       message: 'The requested resource was not found.',
       errors: undefined,
@@ -259,9 +217,6 @@ export class SimpleFormComponent implements OnInit {
   }
   
   private triggerUnauthorizedError(): void {
-    this.errorMessage.set(null);
-    this.validationErrors.set(null);
-    
     const mockError: ApiError = {
       message: 'You are not authorized to perform this action. Please log in and try again.',
       errors: undefined,
@@ -271,9 +226,6 @@ export class SimpleFormComponent implements OnInit {
   }
   
   private triggerTimeoutError(): void {
-    this.errorMessage.set(null);
-    this.validationErrors.set(null);
-    
     const mockError: ApiError = {
       message: 'The request took too long. Please try again.',
       errors: undefined,
@@ -283,9 +235,6 @@ export class SimpleFormComponent implements OnInit {
   }
   
   private triggerTooManyRequestsError(): void {
-    this.errorMessage.set(null);
-    this.validationErrors.set(null);
-    
     const mockError: ApiError = {
       message: 'Too many requests. Please wait a moment and try again.',
       errors: undefined,
@@ -295,10 +244,12 @@ export class SimpleFormComponent implements OnInit {
   }
   
   private handleErrorResponse(error: ApiError): void {
-    this.errorMessage.set(error.message);
-    this.validationErrors.set(error.errors || null);
-    
-    // Apply validation errors to form controls if available
+    this.state.setError(error);
+    this.applyValidationErrorsToForm(error);
+    this.showErrorNotification(error.message);
+  }
+  
+  private applyValidationErrorsToForm(error: ApiError): void {
     if (error.errors) {
       Object.keys(error.errors).forEach(key => {
         const control = this.form.get(key);
@@ -308,8 +259,10 @@ export class SimpleFormComponent implements OnInit {
         }
       });
     }
-    
-    this.snackBar.open(error.message, 'Close', {
+  }
+  
+  private showErrorNotification(message: string): void {
+    this.snackBar.open(message, 'Close', {
       duration: 5000,
       horizontalPosition: 'end',
       verticalPosition: 'top',
