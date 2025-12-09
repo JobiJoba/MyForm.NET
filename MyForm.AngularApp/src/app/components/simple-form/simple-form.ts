@@ -13,6 +13,7 @@ import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {CreateFormRequest, ApiError} from '@/types/simpleForm';
 import {FormService} from '@/app/services/form.service';
+import {MockErrorService} from '@/app/services/mock-error.service';
 import {FormState} from './form-state';
 
 @Component({
@@ -35,6 +36,7 @@ import {FormState} from './form-state';
 })
 export class SimpleFormComponent implements OnInit {
   private formService = inject(FormService);
+  private mockErrorService = inject(MockErrorService);
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
   private destroyRef = inject(DestroyRef);
@@ -167,83 +169,7 @@ export class SimpleFormComponent implements OnInit {
   }
   
   triggerRandomError(): void {
-    const errorTypes = [
-      () => this.triggerNetworkError(),
-      () => this.triggerValidationError(),
-      () => this.triggerServerError(),
-      () => this.triggerNotFoundError(),
-      () => this.triggerUnauthorizedError(),
-      () => this.triggerTimeoutError(),
-      () => this.triggerTooManyRequestsError()
-    ];
-    
-    const randomError = errorTypes[Math.floor(Math.random() * errorTypes.length)];
-    randomError();
-  }
-  
-  private triggerNetworkError(): void {
-    const mockError: ApiError = {
-      message: 'Unable to connect to the server. Please check your internet connection and try again.',
-      errors: undefined,
-      statusCode: 0
-    };
-    this.handleErrorResponse(mockError);
-  }
-  
-  private triggerValidationError(): void {
-    const mockError: ApiError = {
-      message: 'Invalid form data. Please check your input and try again.',
-      errors: {
-        firstName: ['First name must be at least 3 characters long'],
-        lastName: ['Last name cannot contain special characters']
-      },
-      statusCode: 400
-    };
-    this.handleErrorResponse(mockError);
-  }
-  
-  private triggerServerError(): void {
-    const mockError: ApiError = {
-      message: 'A server error occurred. Our team has been notified. Please try again later.',
-      errors: undefined,
-      statusCode: 500
-    };
-    this.handleErrorResponse(mockError);
-  }
-  
-  private triggerNotFoundError(): void {
-    const mockError: ApiError = {
-      message: 'The requested resource was not found.',
-      errors: undefined,
-      statusCode: 404
-    };
-    this.handleErrorResponse(mockError);
-  }
-  
-  private triggerUnauthorizedError(): void {
-    const mockError: ApiError = {
-      message: 'You are not authorized to perform this action. Please log in and try again.',
-      errors: undefined,
-      statusCode: 401
-    };
-    this.handleErrorResponse(mockError);
-  }
-  
-  private triggerTimeoutError(): void {
-    const mockError: ApiError = {
-      message: 'The request took too long. Please try again.',
-      errors: undefined,
-      statusCode: 408
-    };
-    this.handleErrorResponse(mockError);
-  }
-  
-  private triggerTooManyRequestsError(): void {
-    const mockError: ApiError = {
-      message: 'Too many requests. Please wait a moment and try again.',
-      errors: undefined,
-      statusCode: 429
-    };
+    const mockError = this.mockErrorService.getRandomError();
     this.handleErrorResponse(mockError);
   }
   
