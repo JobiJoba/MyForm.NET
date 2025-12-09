@@ -15,15 +15,11 @@ builder.AddNpgsqlDbContext<MyFormDbContext>("myform");
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    options.SwaggerDoc("v1", new()
     {
         Version = "v1",
         Title = "MyForm API",
-        Description = "API for managing form submissions",
-        Contact = new Microsoft.OpenApi.Models.OpenApiContact
-        {
-            Name = "MyForm API Support"
-        }
+        Description = "API for managing form submissions"
     });
 
     // Include XML comments if available
