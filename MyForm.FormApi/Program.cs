@@ -71,7 +71,7 @@ app.MapGet("/forms", async (MyFormDbContext db, ILogger<Program> logger) =>
         logger.LogInformation("Fetching all forms");
 
         var forms = await db.Forms.ToListAsync();
-        var response = forms.Select(f => new SimpleFormResponse(f.Id, f.FirstName, f.LastName)).ToList();
+        var response = forms.Select(f => new SimpleFormResponse(f.Id, f.FirstName, f.LastName, f.CreatedAt)).ToList();
 
         logger.LogInformation("Retrieved {Count} forms", response.Count);
 
@@ -97,7 +97,7 @@ app.MapPost("/forms", async (CreateSimpleFormRequest request, IValidator<CreateS
 
     logger.LogInformation("Form created successfully. FormId: {FormId}", form.Id);
 
-    return Results.Created($"/forms/{form.Id}", new SimpleFormResponse(form.Id, form.FirstName, form.LastName));
+    return Results.Created($"/forms/{form.Id}", new SimpleFormResponse(form.Id, form.FirstName, form.LastName, form.CreatedAt));
 })
     .WithName("CreateForm")
     .Produces<SimpleFormResponse>(StatusCodes.Status201Created)
