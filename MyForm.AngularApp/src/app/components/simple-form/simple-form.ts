@@ -62,8 +62,8 @@ export class SimpleFormComponent implements OnInit {
   }
   
   form: FormGroup = this.fb.group({
-    firstName: ['', [Validators.required, Validators.minLength(1)]],
-    lastName: ['', [Validators.required, Validators.minLength(1)]]
+    firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
+    lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]]
   });
 
   loadForms(): void {
@@ -149,6 +149,10 @@ export class SimpleFormComponent implements OnInit {
     
     if (control.errors['minlength']) {
       return `${fieldName === 'firstName' ? 'First name' : 'Last name'} must be at least ${control.errors['minlength'].requiredLength} characters`;
+    }
+    
+    if (control.errors['maxlength']) {
+      return `${fieldName === 'firstName' ? 'First name' : 'Last name'} must not exceed ${control.errors['maxlength'].requiredLength} characters`;
     }
     
     return null;
