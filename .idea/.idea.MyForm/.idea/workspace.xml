@@ -16,9 +16,9 @@
   <component name="ChangeListManager">
     <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/MyForm.FormApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/MyForm.FormApi.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,7 +309,7 @@
       <workItem from="1764557318276" duration="120000" />
       <workItem from="1764557485282" duration="25489000" />
       <workItem from="1765161725467" duration="7614000" />
-      <workItem from="1765286717919" duration="2420000" />
+      <workItem from="1765286717919" duration="3141000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -407,7 +407,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765288500585</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added server validation with FluentValidation">
+      <option name="closed" value="true" />
+      <created>1765289223115</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1765289223115</updated>
+    </task>
+    <task id="LOCAL-00014" summary="clean simple-form.ts by removing the mock error into a separate service.">
+      <option name="closed" value="true" />
+      <created>1765289465958</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1765289465958</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,7 +445,9 @@
     <MESSAGE value="Added environment aware configuration" />
     <MESSAGE value="Extract state of Form into a separate class to make it a bit cleaning in the main class and because we are going to reuse in other form class" />
     <MESSAGE value="API Should expose DTO instead of entities - data layer is separate from the contract" />
-    <option name="LAST_COMMIT_MESSAGE" value="API Should expose DTO instead of entities - data layer is separate from the contract" />
+    <MESSAGE value="added server validation with FluentValidation" />
+    <MESSAGE value="clean simple-form.ts by removing the mock error into a separate service." />
+    <option name="LAST_COMMIT_MESSAGE" value="clean simple-form.ts by removing the mock error into a separate service." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

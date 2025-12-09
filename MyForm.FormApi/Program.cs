@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MyForm.FormApi.Data;
 using MyForm.FormApi.DTOs;
 using MyForm.FormApi.Entities;
+using MyForm.FormApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,11 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 });
 
+
 var app = builder.Build();
+
+// Add global exception handling middleware (early in pipeline)
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.MapDefaultEndpoints();
 
@@ -61,29 +66,25 @@ app.MapGet("/weatherforecast", () =>
     .WithName("GetWeatherForecast");
 
 
-app.MapGet("/forms", async (MyFormDbContext db) =>
+app.MapGet("/forms", async (MyFormDbContext db, ILogger<Program> logger) =>
     {
+        logger.LogInformation("Fetching all forms");
+
         var forms = await db.Forms.ToListAsync();
-        return forms.Select(f => new SimpleFormResponse(f.Id, f.FirstName, f.LastName));
+        var response = forms.Select(f => new SimpleFormResponse(f.Id, f.FirstName, f.LastName)).ToList();
+
+        logger.LogInformation("Retrieved {Count} forms", response.Count);
+
+        return response;
     })
     .WithName("GetAllSubmissions")
-    .Produces<List<SimpleFormResponse>>();
+    .Produces<List<SimpleFormResponse>>()
+    .Produces<ErrorResponse>(StatusCodes.Status500InternalServerError);
 
-app.MapPost("/forms", async (CreateSimpleFormRequest request, IValidator<CreateSimpleFormRequest> validator, MyFormDbContext db) =>
+app.MapPost("/forms", async (CreateSimpleFormRequest request, IValidator<CreateSimpleFormRequest> validator, MyFormDbContext db, ILogger<Program> logger) =>
 {
-    var validationResult = await validator.ValidateAsync(request);
-    if (!validationResult.IsValid)
-    {
-        var namingPolicy = JsonNamingPolicy.CamelCase;
-        return Results.BadRequest(new
-        {
-            errors = validationResult.Errors.GroupBy(e => e.PropertyName)
-                .ToDictionary(
-                    g => namingPolicy.ConvertName(g.Key),
-                    g => g.Select(e => e.ErrorMessage).ToArray()
-                )
-        });
-    }
+    // Validation will throw ValidationException if invalid, handled by middleware
+    await validator.ValidateAndThrowAsync(request);
 
     var form = new SimpleForm
     {
@@ -94,11 +95,14 @@ app.MapPost("/forms", async (CreateSimpleFormRequest request, IValidator<CreateS
     db.Forms.Add(form);
     await db.SaveChangesAsync();
 
+    logger.LogInformation("Form created successfully. FormId: {FormId}", form.Id);
+
     return Results.Created($"/forms/{form.Id}", new SimpleFormResponse(form.Id, form.FirstName, form.LastName));
 })
     .WithName("CreateForm")
     .Produces<SimpleFormResponse>(StatusCodes.Status201Created)
-    .Produces<object>(StatusCodes.Status400BadRequest);
+    .Produces<ErrorResponse>(StatusCodes.Status400BadRequest)
+    .Produces<ErrorResponse>(StatusCodes.Status500InternalServerError);
 
 app.Run();
 
