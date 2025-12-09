@@ -1,5 +1,7 @@
-import {Component, inject, OnInit, signal, isDevMode} from '@angular/core';
+import {Component, inject, OnInit, signal, isDevMode, DestroyRef} from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {finalize} from 'rxjs';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -34,6 +36,7 @@ export class SimpleFormComponent implements OnInit {
   private formService = inject(FormService);
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
+  private destroyRef = inject(DestroyRef);
   
   forms = signal<SimpleForms>([]);
   submitted = signal<boolean>(false);
@@ -60,25 +63,28 @@ export class SimpleFormComponent implements OnInit {
     this.errorMessage.set(null);
     this.validationErrors.set(null);
     
-    this.formService.getAllForms().subscribe({
-      next: (result: SimpleForms) => {
-        this.forms.set(result);
-        this.loadingForms.set(false);
-      },
-      error: (error: ApiError) => {
-        this.errorMessage.set(error.message);
-        this.validationErrors.set(error.errors || null);
-        this.loadingForms.set(false);
-        
-        // Show error notification
-        this.snackBar.open(error.message, 'Close', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'top',
-          panelClass: ['error-snackbar']
-        });
-      }
-    });
+    this.formService.getAllForms()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        finalize(() => this.loadingForms.set(false))
+      )
+      .subscribe({
+        next: (result: SimpleForms) => {
+          this.forms.set(result);
+        },
+        error: (error: ApiError) => {
+          this.errorMessage.set(error.message);
+          this.validationErrors.set(error.errors || null);
+          
+          // Show error notification
+          this.snackBar.open(error.message, 'Close', {
+            duration: 5000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['error-snackbar']
+          });
+        }
+      });
   }
 
   onSubmit(): void {
@@ -90,49 +96,53 @@ export class SimpleFormComponent implements OnInit {
       const formValue: CreateFormRequest = this.form.value as CreateFormRequest;
       this.loading.set(true);
       
-      this.formService.createForm(formValue).subscribe({
-        next: () => {
-          this.form.reset();
-          this.submitted.set(false);
-          this.loading.set(false);
-          this.errorMessage.set(null);
-          this.validationErrors.set(null);
-          
-          this.snackBar.open('Form submitted successfully!', 'Close', {
-            duration: 3000,
-            horizontalPosition: 'end',
-            verticalPosition: 'top',
-            panelClass: ['success-snackbar']
-          });
-          
-          // Reload forms list
-          this.loadForms();
-        },
-        error: (error: ApiError) => {
-          this.errorMessage.set(error.message);
-          this.validationErrors.set(error.errors || null);
-          this.submitted.set(false);
-          this.loading.set(false);
-          
-          // Apply validation errors to form controls if available
-          if (error.errors) {
-            Object.keys(error.errors).forEach(key => {
-              const control = this.form.get(key);
-              if (control && error.errors?.[key]) {
-                control.setErrors({ apiError: error.errors[key][0] });
-                control.markAsTouched();
-              }
+      this.formService.createForm(formValue)
+        .pipe(
+          takeUntilDestroyed(this.destroyRef),
+          finalize(() => {
+            this.loading.set(false);
+            this.submitted.set(false);
+          })
+        )
+        .subscribe({
+          next: () => {
+            this.form.reset();
+            this.errorMessage.set(null);
+            this.validationErrors.set(null);
+            
+            this.snackBar.open('Form submitted successfully!', 'Close', {
+              duration: 3000,
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['success-snackbar']
+            });
+            
+            // Reload forms list
+            this.loadForms();
+          },
+          error: (error: ApiError) => {
+            this.errorMessage.set(error.message);
+            this.validationErrors.set(error.errors || null);
+            
+            // Apply validation errors to form controls if available
+            if (error.errors) {
+              Object.keys(error.errors).forEach(key => {
+                const control = this.form.get(key);
+                if (control && error.errors?.[key]) {
+                  control.setErrors({ apiError: error.errors[key][0] });
+                  control.markAsTouched();
+                }
+              });
+            }
+            
+            this.snackBar.open(error.message, 'Close', {
+              duration: 5000,
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              panelClass: ['error-snackbar']
             });
           }
-          
-          this.snackBar.open(error.message, 'Close', {
-            duration: 5000,
-            horizontalPosition: 'end',
-            verticalPosition: 'top',
-            panelClass: ['error-snackbar']
-          });
-        }
-      });
+        });
     } else {
       // Mark all fields as touched to show validation errors
       Object.keys(this.form.controls).forEach(key => {

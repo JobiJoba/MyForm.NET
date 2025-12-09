@@ -15,11 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/services/form.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/services/form.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -311,7 +309,8 @@
       <workItem from="1764557112094" duration="192000" />
       <workItem from="1764557318276" duration="120000" />
       <workItem from="1764557485282" duration="25489000" />
-      <workItem from="1765161725467" duration="5507000" />
+      <workItem from="1765161725467" duration="7614000" />
+      <workItem from="1765286717919" duration="543000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -369,7 +368,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765166916201</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Manage error a bit better; added a simulator of error when we are in devMode">
+      <option name="closed" value="true" />
+      <created>1765167661986</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1765167661986</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -386,7 +393,8 @@
     <MESSAGE value="day02 - added db; migrations; configure swagger" />
     <MESSAGE value="day 03" />
     <MESSAGE value="day 03 - added services" />
-    <option name="LAST_COMMIT_MESSAGE" value="day 03 - added services" />
+    <MESSAGE value="Manage error a bit better; added a simulator of error when we are in devMode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Manage error a bit better; added a simulator of error when we are in devMode" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
