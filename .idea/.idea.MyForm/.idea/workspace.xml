@@ -14,12 +14,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/appsettings.json" afterDir="false" />
-    </list>
+    <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,9 +55,12 @@
     <setting file="file://$PROJECT_DIR$/.vscode/settings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/angular.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.AngularApp/package-lock.json" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Data/MyFormDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Data/MyFormDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Data/MyFormDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Entities/SimpleForm.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/global.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/local/share/dotnet/sdk/10.0.100/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_10_default.globalconfig" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -309,7 +307,7 @@
       <workItem from="1764557318276" duration="120000" />
       <workItem from="1764557485282" duration="25489000" />
       <workItem from="1765161725467" duration="7614000" />
-      <workItem from="1765286717919" duration="3141000" />
+      <workItem from="1765286717919" duration="3532000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -423,7 +421,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765289465958</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Better management of error">
+      <option name="closed" value="true" />
+      <created>1765289985592</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1765289985592</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added more configuration for the tables.">
+      <option name="closed" value="true" />
+      <created>1765290263308</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1765290263308</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,7 +461,9 @@
     <MESSAGE value="API Should expose DTO instead of entities - data layer is separate from the contract" />
     <MESSAGE value="added server validation with FluentValidation" />
     <MESSAGE value="clean simple-form.ts by removing the mock error into a separate service." />
-    <option name="LAST_COMMIT_MESSAGE" value="clean simple-form.ts by removing the mock error into a separate service." />
+    <MESSAGE value="Better management of error" />
+    <MESSAGE value="added more configuration for the tables." />
+    <option name="LAST_COMMIT_MESSAGE" value="added more configuration for the tables." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -10,12 +10,12 @@ export const API_ENDPOINTS = {
   BASE_URL: environment.apiBaseUrl,
 
   /**
-   * Forms endpoints
+   * Forms endpoints (API v1)
    */
   FORMS: {
-    BASE: `${environment.apiBaseUrl}/forms`,
-    GET_ALL: `${environment.apiBaseUrl}/forms`,
-    CREATE: `${environment.apiBaseUrl}/forms`
+    BASE: `${environment.apiBaseUrl}/v1/forms`,
+    GET_ALL: `${environment.apiBaseUrl}/v1/forms`,
+    CREATE: `${environment.apiBaseUrl}/v1/forms`
   }
 } as const;
 

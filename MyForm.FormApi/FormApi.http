@@ -1,10 +1,19 @@
 @FormApi_HostAddress = http://localhost:5201
+@ApiVersion = v1
 
-GET {{FormApi_HostAddress}}/weatherforecast/
+### Get all form submissions
+GET {{FormApi_HostAddress}}/api/{{ApiVersion}}/forms
 Accept: application/json
 
 ###
 
+### Create a new form submission
+POST {{FormApi_HostAddress}}/api/{{ApiVersion}}/forms
+Content-Type: application/json
 
-GET {{FormApi_HostAddress}}/forms
-Accept: application/json
+{
+  "firstName": "John",
+  "lastName": "Doe"
+}
+
+###

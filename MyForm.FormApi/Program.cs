@@ -13,7 +13,27 @@ builder.AddServiceDefaults();
 builder.AddNpgsqlDbContext<MyFormDbContext>("myform");
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "v1",
+        Title = "MyForm API",
+        Description = "API for managing form submissions",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        {
+            Name = "MyForm API Support"
+        }
+    });
+
+    // Include XML comments if available
+    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+    {
+        options.IncludeXmlComments(xmlPath);
+    }
+});
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateSimpleFormRequestValidator>();
 
@@ -35,38 +55,26 @@ app.MapDefaultEndpoints();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    // app.MapOpenApi();
+    app.MapOpenApi();
     using var scope = app.Services.CreateScope();
     var dbContext = scope.ServiceProvider.GetRequiredService<MyFormDbContext>();
     dbContext.Database.Migrate();
 
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "MyForm API v1");
+        options.RoutePrefix = "swagger";
+    });
 }
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+// API v1 endpoints
+var apiV1 = app.MapGroup("/api/v1")
+    .WithTags("Forms API v1");
 
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast");
-
-
-app.MapGet("/forms", async (MyFormDbContext db, ILogger<Program> logger) =>
+apiV1.MapGet("/forms", async (MyFormDbContext db, ILogger<Program> logger) =>
     {
         logger.LogInformation("Fetching all forms");
 
@@ -78,10 +86,12 @@ app.MapGet("/forms", async (MyFormDbContext db, ILogger<Program> logger) =>
         return response;
     })
     .WithName("GetAllSubmissions")
-    .Produces<List<SimpleFormResponse>>()
+    .WithSummary("Get all form submissions")
+    .WithDescription("Retrieves all form submissions from the database")
+    .Produces<List<SimpleFormResponse>>(StatusCodes.Status200OK, "application/json")
     .Produces<ErrorResponse>(StatusCodes.Status500InternalServerError);
 
-app.MapPost("/forms", async (CreateSimpleFormRequest request, IValidator<CreateSimpleFormRequest> validator, MyFormDbContext db, ILogger<Program> logger) =>
+apiV1.MapPost("/forms", async (CreateSimpleFormRequest request, IValidator<CreateSimpleFormRequest> validator, MyFormDbContext db, ILogger<Program> logger) =>
 {
     // Validation will throw ValidationException if invalid, handled by middleware
     await validator.ValidateAndThrowAsync(request);
@@ -97,16 +107,13 @@ app.MapPost("/forms", async (CreateSimpleFormRequest request, IValidator<CreateS
 
     logger.LogInformation("Form created successfully. FormId: {FormId}", form.Id);
 
-    return Results.Created($"/forms/{form.Id}", new SimpleFormResponse(form.Id, form.FirstName, form.LastName, form.CreatedAt));
+    return Results.Created($"/api/v1/forms/{form.Id}", new SimpleFormResponse(form.Id, form.FirstName, form.LastName, form.CreatedAt));
 })
     .WithName("CreateForm")
-    .Produces<SimpleFormResponse>(StatusCodes.Status201Created)
+    .WithSummary("Create a new form submission")
+    .WithDescription("Creates a new form submission with first name and last name. Validates input and returns the created form.")
+    .Produces<SimpleFormResponse>(StatusCodes.Status201Created, "application/json")
     .Produces<ErrorResponse>(StatusCodes.Status400BadRequest)
     .Produces<ErrorResponse>(StatusCodes.Status500InternalServerError);
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
