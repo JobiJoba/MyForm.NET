@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using MyForm.FormApi.Data;
+using MyForm.FormApi.DTOs;
 using MyForm.FormApi.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -59,17 +60,29 @@ app.MapGet("/weatherforecast", () =>
     .WithName("GetWeatherForecast");
 
 
-app.MapGet("/forms", async (MyFormDbContext db) => await db.Forms.ToListAsync())
+app.MapGet("/forms", async (MyFormDbContext db) =>
+    {
+        var forms = await db.Forms.ToListAsync();
+        return forms.Select(f => new SimpleFormResponse(f.Id, f.FirstName, f.LastName));
+    })
     .WithName("GetAllSubmissions")
-    .Produces<List<SimpleForm>>();
+    .Produces<List<SimpleFormResponse>>();
 
-app.MapPost("/forms",  (SimpleForm form, MyFormDbContext db) =>
+app.MapPost("/forms", async (CreateSimpleFormRequest request, MyFormDbContext db) =>
 {
+    var form = new SimpleForm
+    {
+        FirstName = request.FirstName,
+        LastName = request.LastName
+    };
     
-  db.Forms.Add(form);
-  db.SaveChanges();
- 
-});
+    db.Forms.Add(form);
+    await db.SaveChangesAsync();
+    
+    return Results.Created($"/forms/{form.Id}", new SimpleFormResponse(form.Id, form.FirstName, form.LastName));
+})
+    .WithName("CreateForm")
+    .Produces<SimpleFormResponse>(StatusCodes.Status201Created);
 
 app.Run();
 
