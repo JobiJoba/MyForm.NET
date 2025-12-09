@@ -2,16 +2,16 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError, retry, finalize, timer } from 'rxjs';
 import { SimpleForms, CreateFormRequest, CreateFormResponse, ApiError } from '@/types/simpleForm';
+import { API_ENDPOINTS } from '@/app/config/api-endpoints';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormService {
   private http = inject(HttpClient);
-  private readonly apiUrl = 'api/forms';
 
   getAllForms(): Observable<SimpleForms> {
-    return this.http.get<SimpleForms>(this.apiUrl).pipe(
+    return this.http.get<SimpleForms>(API_ENDPOINTS.FORMS.GET_ALL).pipe(
       retry({
         count: 3,
         delay: (error: HttpErrorResponse, retryCount: number) => {
@@ -28,7 +28,7 @@ export class FormService {
   }
 
   createForm(request: CreateFormRequest): Observable<CreateFormResponse> {
-    return this.http.post<CreateFormResponse>(this.apiUrl, request).pipe(
+    return this.http.post<CreateFormResponse>(API_ENDPOINTS.FORMS.CREATE, request).pipe(
       retry({
         count: 2,
         delay: (error: HttpErrorResponse, retryCount: number) => {
