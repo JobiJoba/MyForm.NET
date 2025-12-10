@@ -57,8 +57,10 @@
               <mat-progress-spinner mode="indeterminate" diameter="20" class="button-spinner"></mat-progress-spinner>
               <span>Submitting...</span>
             } @else {
-              <mat-icon>send</mat-icon>
-              <span>Submit</span>
+              <ng-container>
+                <mat-icon>send</mat-icon>
+                <span>Submit</span>
+              </ng-container>
             }
           </button>
           @if (isDev) {

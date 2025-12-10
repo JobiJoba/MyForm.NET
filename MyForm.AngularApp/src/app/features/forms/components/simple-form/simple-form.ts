@@ -1,6 +1,7 @@
 import {Component, inject, OnInit, isDevMode, DestroyRef} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 import {finalize} from 'rxjs';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -11,8 +12,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule, MatSnackBar} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {CreateFormRequest, ApiError} from '@/types/simpleForm';
-import {FormService} from '@/app/services/form.service';
+import {CreateFormRequest, ApiError, SimpleForms} from '@/types/simpleForm';
+import {FormService} from '../../services/form.service';
 import {MockErrorService} from '@/app/services/mock-error.service';
 import {FormState} from './form-state';
 
@@ -40,6 +41,7 @@ export class SimpleFormComponent implements OnInit {
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
   private destroyRef = inject(DestroyRef);
+  private route = inject(ActivatedRoute);
   
   // Encapsulated state management
   readonly state = new FormState();
@@ -60,7 +62,13 @@ export class SimpleFormComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.loadForms();
+    // Use resolver data if available, otherwise load manually
+    const resolvedForms = this.route.snapshot.data['forms'] as SimpleForms | undefined;
+    if (resolvedForms) {
+      this.state.setForms(resolvedForms);
+    } else {
+      this.loadForms();
+    }
   }
   
   form: FormGroup = this.fb.group({

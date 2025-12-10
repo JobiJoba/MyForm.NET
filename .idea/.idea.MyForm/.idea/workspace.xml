@@ -15,7 +15,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/MyForm.FormApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/MyForm.FormApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/form-state.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/services/form.service.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +69,9 @@
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Data/MyFormDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Data/MyFormDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Entities/SimpleForm.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/global.json" root0="FORCE_HIGHLIGHTING" />
@@ -310,7 +320,7 @@
       <workItem from="1764557318276" duration="120000" />
       <workItem from="1764557485282" duration="25489000" />
       <workItem from="1765161725467" duration="7614000" />
-      <workItem from="1765286717919" duration="3875000" />
+      <workItem from="1765286717919" duration="6599000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -448,7 +458,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765290452572</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="day 05 - fixing errors">
+      <option name="closed" value="true" />
+      <created>1765292714440</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1765292714440</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +493,8 @@
     <MESSAGE value="Better management of error" />
     <MESSAGE value="added more configuration for the tables." />
     <MESSAGE value="Clean dead code; add versioning; add more description to swaggerUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean dead code; add versioning; add more description to swaggerUI" />
+    <MESSAGE value="day 05 - fixing errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="day 05 - fixing errors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

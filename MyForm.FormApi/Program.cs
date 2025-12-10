@@ -1,16 +1,32 @@
 using System.Text.Json;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using MyForm.FormApi.CQRS;
+using MyForm.FormApi.CQRS.Commands;
+using MyForm.FormApi.CQRS.Queries;
+using MyForm.FormApi.CQRS.Results;
 using MyForm.FormApi.Data;
 using MyForm.FormApi.DTOs;
-using MyForm.FormApi.Entities;
+using MyForm.FormApi.Mappings;
 using MyForm.FormApi.Middleware;
+using MyForm.FormApi.Repositories;
+using MyForm.FormApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
 builder.AddNpgsqlDbContext<MyFormDbContext>("myform");
+
+// Register repositories
+builder.Services.AddScoped<ISimpleFormRepository, SimpleFormRepository>();
+
+// Register CQRS handlers
+builder.Services.AddScoped<ICommandHandler<CreateSimpleFormCommand, CreateSimpleFormResult>, CreateSimpleFormCommandHandler>();
+builder.Services.AddScoped<IQueryHandler<GetAllFormsQuery, GetAllFormsResult>, GetAllFormsQueryHandler>();
+
+// Register services
+builder.Services.AddScoped<ISimpleFormService, SimpleFormService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -70,16 +86,10 @@ app.UseHttpsRedirection();
 var apiV1 = app.MapGroup("/api/v1")
     .WithTags("Forms API v1");
 
-apiV1.MapGet("/forms", async (MyFormDbContext db, ILogger<Program> logger) =>
+apiV1.MapGet("/forms", async (ISimpleFormService service, CancellationToken cancellationToken) =>
     {
-        logger.LogInformation("Fetching all forms");
-
-        var forms = await db.Forms.ToListAsync();
-        var response = forms.Select(f => new SimpleFormResponse(f.Id, f.FirstName, f.LastName, f.CreatedAt)).ToList();
-
-        logger.LogInformation("Retrieved {Count} forms", response.Count);
-
-        return response;
+        var result = await service.GetAllFormsAsync(cancellationToken);
+        return result.ToDtoList();
     })
     .WithName("GetAllSubmissions")
     .WithSummary("Get all form submissions")
@@ -87,23 +97,19 @@ apiV1.MapGet("/forms", async (MyFormDbContext db, ILogger<Program> logger) =>
     .Produces<List<SimpleFormResponse>>(StatusCodes.Status200OK, "application/json")
     .Produces<ErrorResponse>(StatusCodes.Status500InternalServerError);
 
-apiV1.MapPost("/forms", async (CreateSimpleFormRequest request, IValidator<CreateSimpleFormRequest> validator, MyFormDbContext db, ILogger<Program> logger) =>
+apiV1.MapPost("/forms", async (
+    CreateSimpleFormRequest request,
+    IValidator<CreateSimpleFormRequest> validator,
+    ISimpleFormService service,
+    CancellationToken cancellationToken) =>
 {
     // Validation will throw ValidationException if invalid, handled by middleware
     await validator.ValidateAndThrowAsync(request);
 
-    var form = new SimpleForm
-    {
-        FirstName = request.FirstName,
-        LastName = request.LastName
-    };
+    var command = new CreateSimpleFormCommand(request.FirstName, request.LastName);
+    var result = await service.CreateFormAsync(command, cancellationToken);
 
-    db.Forms.Add(form);
-    await db.SaveChangesAsync();
-
-    logger.LogInformation("Form created successfully. FormId: {FormId}", form.Id);
-
-    return Results.Created($"/api/v1/forms/{form.Id}", new SimpleFormResponse(form.Id, form.FirstName, form.LastName, form.CreatedAt));
+    return Results.Created($"/api/v1/forms/{result.Id}", result.ToDto());
 })
     .WithName("CreateForm")
     .WithSummary("Create a new form submission")
