@@ -53,6 +53,7 @@ export class SimpleFormComponent implements OnInit {
   readonly validationErrors = this.state.validationErrors;
   readonly loading = this.state.submitting;
   readonly loadingForms = this.state.loadingForms;
+  readonly deletingId = this.state.deletingId;
   readonly isLoading = this.state.isLoading;
   readonly hasError = this.state.hasError;
   readonly hasValidationErrors = this.state.hasValidationErrors;
@@ -96,28 +97,36 @@ export class SimpleFormComponent implements OnInit {
       });
   }
 
-  deleteForm(id: number): void {
-    this.state.setLoadingForms(true);
+  deleteForm(id: number, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    }
+    
+    this.state.setDeletingId(id);
     this.state.clearError();
     
     this.formService.deleteForm(id)
       .pipe(
-        takeUntilDestroyed(this.destroyRef)
+        takeUntilDestroyed(this.destroyRef),
+        finalize(() => this.state.setDeletingId(null))
       )
       .subscribe({
         next: () => {
+          // Optimistically remove the deleted form from local state
+          const currentForms = this.state.forms();
+          const updatedForms = currentForms.filter(form => form.id !== id);
+          this.state.setForms(updatedForms);
+          
           this.snackBar.open('Form deleted successfully!', 'Close', {
             duration: 3000,
             horizontalPosition: 'end',
             verticalPosition: 'top',
             panelClass: ['success-snackbar']
           });
-          
-          // Reload forms list (will handle loading state)
-          this.loadForms();
         },
         error: (error: ApiError) => {
-          this.state.setLoadingForms(false);
           this.state.setError(error);
           this.showErrorNotification(error.message);
         }
