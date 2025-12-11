@@ -16,14 +16,12 @@
   <component name="ChangeListManager">
     <list default="true" id="90c37914-b3ca-4c6d-80b6-aa85d62c38f4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyForm/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/form-state.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/components/simple-form/simple-form.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/services/form.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.AngularApp/src/app/shared/state/base-form-state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.AngularApp/src/app/shared/state/base-form-state.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/CQRS/Commands/CreateSimpleFormCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/CQRS/Commands/CreateSimpleFormCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/DTOs/CreateSimpleFormRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/DTOs/CreateSimpleFormRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/DTOs/CreateSimpleFormRequestValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/DTOs/CreateSimpleFormRequestValidator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyForm.FormApi/Services/SimpleFormService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MyForm.FormApi/Services/SimpleFormService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,10 +63,14 @@
     <setting file="file://$PROJECT_DIR$/.vscode/settings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.AngularApp/angular.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.AngularApp/package-lock.json" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/DTOs/CreateSimpleFormRequest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/DTOs/CreateSimpleFormRequestValidator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Data/MyFormDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Data/MyFormDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Data/MyFormDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MyForm.FormApi/Entities/SimpleForm.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/joba/Projects/Private/dotnet/MyForm/MyForm.FormApi/Program.cs" root0="SKIP_HIGHLIGHTING" />
@@ -320,7 +322,7 @@
       <workItem from="1764557318276" duration="120000" />
       <workItem from="1764557485282" duration="25489000" />
       <workItem from="1765161725467" duration="7614000" />
-      <workItem from="1765286717919" duration="6599000" />
+      <workItem from="1765286717919" duration="9767000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -466,7 +468,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765292714440</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="rearchitecture for enterprise level code with service and repository; add auth (fake)">
+      <option name="closed" value="true" />
+      <created>1765332536208</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1765332536208</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,7 +504,8 @@
     <MESSAGE value="added more configuration for the tables." />
     <MESSAGE value="Clean dead code; add versioning; add more description to swaggerUI" />
     <MESSAGE value="day 05 - fixing errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="day 05 - fixing errors" />
+    <MESSAGE value="rearchitecture for enterprise level code with service and repository; add auth (fake)" />
+    <option name="LAST_COMMIT_MESSAGE" value="rearchitecture for enterprise level code with service and repository; add auth (fake)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
