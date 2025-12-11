@@ -7,6 +7,7 @@ namespace MyForm.FormApi.Services;
 
 public class SimpleFormService(
     ICommandHandler<CreateSimpleFormCommand, CreateSimpleFormResult> createHandler,
+    ICommandHandler<DeleteSimpleFormCommand, DeleteSimpleFormResult> deleteHandler,
     IQueryHandler<GetAllFormsQuery, GetAllFormsResult> getAllHandler)
     : ISimpleFormService
 {
@@ -18,5 +19,10 @@ public class SimpleFormService(
     public Task<GetAllFormsResult> GetAllFormsAsync(CancellationToken cancellationToken = default)
     {
         return getAllHandler.HandleAsync(new GetAllFormsQuery(), cancellationToken);
+    }
+
+    public Task<DeleteSimpleFormResult> DeleteFormAsync(DeleteSimpleFormCommand command, CancellationToken cancellationToken = default)
+    {
+        return deleteHandler.HandleAsync(command, cancellationToken);
     }
 }

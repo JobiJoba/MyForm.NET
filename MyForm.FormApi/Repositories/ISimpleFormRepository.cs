@@ -8,4 +8,5 @@ public interface ISimpleFormRepository
     Task<SimpleForm?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
     Task<SimpleForm> CreateAsync(SimpleForm form, CancellationToken cancellationToken = default);
     Task<bool> ExistsAsync(int id, CancellationToken cancellationToken = default);
+    Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default);
 }

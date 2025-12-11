@@ -27,4 +27,17 @@ public class SimpleFormRepository(MyFormDbContext context) : ISimpleFormReposito
     {
         return await context.Forms.AnyAsync(f => f.Id == id, cancellationToken);
     }
+
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
+    {
+        var form = await context.Forms.FindAsync([id], cancellationToken);
+        if (form == null)
+        {
+            return false;
+        }
+
+        context.Forms.Remove(form);
+        await context.SaveChangesAsync(cancellationToken);
+        return true;
+    }
 }

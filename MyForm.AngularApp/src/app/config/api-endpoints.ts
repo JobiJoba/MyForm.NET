@@ -15,7 +15,8 @@ export const API_ENDPOINTS = {
   FORMS: {
     BASE: `${environment.apiBaseUrl}/v1/forms`,
     GET_ALL: `${environment.apiBaseUrl}/v1/forms`,
-    CREATE: `${environment.apiBaseUrl}/v1/forms`
+    CREATE: `${environment.apiBaseUrl}/v1/forms`,
+    DELETE: (id: number) => `${environment.apiBaseUrl}/v1/forms/${id}`
   }
 } as const;
 

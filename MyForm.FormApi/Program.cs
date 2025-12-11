@@ -23,6 +23,7 @@ builder.Services.AddScoped<ISimpleFormRepository, SimpleFormRepository>();
 
 // Register CQRS handlers
 builder.Services.AddScoped<ICommandHandler<CreateSimpleFormCommand, CreateSimpleFormResult>, CreateSimpleFormCommandHandler>();
+builder.Services.AddScoped<ICommandHandler<DeleteSimpleFormCommand, DeleteSimpleFormResult>, DeleteSimpleFormCommandHandler>();
 builder.Services.AddScoped<IQueryHandler<GetAllFormsQuery, GetAllFormsResult>, GetAllFormsQueryHandler>();
 
 // Register services
@@ -116,6 +117,28 @@ apiV1.MapPost("/forms", async (
     .WithDescription("Creates a new form submission with first name and last name. Validates input and returns the created form.")
     .Produces<SimpleFormResponse>(StatusCodes.Status201Created, "application/json")
     .Produces<ErrorResponse>(StatusCodes.Status400BadRequest)
+    .Produces<ErrorResponse>(StatusCodes.Status500InternalServerError);
+
+apiV1.MapDelete("/forms/{id}", async (
+    int id,
+    ISimpleFormService service,
+    CancellationToken cancellationToken) =>
+{
+    var command = new DeleteSimpleFormCommand(id);
+    var result = await service.DeleteFormAsync(command, cancellationToken);
+
+    if (!result.Success)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.NoContent();
+})
+    .WithName("DeleteForm")
+    .WithSummary("Delete a form submission")
+    .WithDescription("Deletes a form submission by ID. Returns 204 No Content on success, 404 if not found.")
+    .Produces(StatusCodes.Status204NoContent)
+    .Produces<ErrorResponse>(StatusCodes.Status404NotFound)
     .Produces<ErrorResponse>(StatusCodes.Status500InternalServerError);
 
 app.Run();

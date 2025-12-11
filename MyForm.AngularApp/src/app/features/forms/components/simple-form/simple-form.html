@@ -104,6 +104,9 @@
               <mat-icon matListItemIcon class="item-icon">description</mat-icon>
               <div matListItemTitle class="item-title">{{ form.firstName }} {{ form.lastName }}</div>
               <div matListItemLine class="item-subtitle">ID: {{ form.id }}</div>
+              <button mat-icon-button color="warn" (click)="deleteForm(form.id)" [disabled]="loadingForms()" class="delete-button" matListItemMeta>
+                <mat-icon>delete</mat-icon>
+              </button>
             </mat-list-item>
             @if (i < forms().length - 1) {
               <mat-divider></mat-divider>

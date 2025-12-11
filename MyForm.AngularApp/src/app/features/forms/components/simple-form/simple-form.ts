@@ -96,6 +96,34 @@ export class SimpleFormComponent implements OnInit {
       });
   }
 
+  deleteForm(id: number): void {
+    this.state.setLoadingForms(true);
+    this.state.clearError();
+    
+    this.formService.deleteForm(id)
+      .pipe(
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe({
+        next: () => {
+          this.snackBar.open('Form deleted successfully!', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['success-snackbar']
+          });
+          
+          // Reload forms list (will handle loading state)
+          this.loadForms();
+        },
+        error: (error: ApiError) => {
+          this.state.setLoadingForms(false);
+          this.state.setError(error);
+          this.showErrorNotification(error.message);
+        }
+      });
+  }
+
   onSubmit(): void {
     this.state.setSubmitted(true);
     this.state.clearError();
