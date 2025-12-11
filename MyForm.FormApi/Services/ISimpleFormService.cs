@@ -8,4 +8,5 @@ public interface ISimpleFormService
 {
     Task<CreateSimpleFormResult> CreateFormAsync(CreateSimpleFormCommand command, CancellationToken cancellationToken = default);
     Task<GetAllFormsResult> GetAllFormsAsync(CancellationToken cancellationToken = default);
+    Task<DeleteSimpleFormResult> DeleteFormAsync(DeleteSimpleFormCommand command, CancellationToken cancellationToken = default);
 }

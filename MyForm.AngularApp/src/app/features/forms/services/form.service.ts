@@ -41,5 +41,21 @@ export class FormService {
       })
     );
   }
+
+  deleteForm(id: number): Observable<void> {
+    return this.http.delete<void>(API_ENDPOINTS.FORMS.DELETE(id)).pipe(
+      retry({
+        count: 2,
+        delay: (error: HttpErrorResponse, retryCount: number) => {
+          // Don't retry on client errors (4xx) except 408 (timeout) and 429 (rate limit)
+          if (error.status >= 400 && error.status < 500 && error.status !== 408 && error.status !== 429) {
+            return throwError(() => error);
+          }
+          // Exponential backoff: 1s, 2s
+          return timer(Math.min(1000 * Math.pow(2, retryCount - 1), 2000));
+        }
+      })
+    );
+  }
 }
 
